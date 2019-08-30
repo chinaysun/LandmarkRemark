@@ -20,6 +20,7 @@
 		8CA7D5632319698B00409AE4 /* NewMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D5622319698B00409AE4 /* NewMarkViewModel.swift */; };
 		8CA7D565231969E900409AE4 /* UIBarButtonItem+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */; };
 		8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D56C23196D5B00409AE4 /* Location.swift */; };
+		8CA7D56F231972BA00409AE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CA7D56E231972BA00409AE4 /* GoogleService-Info.plist */; };
 		A5F941145914AD21C5EF4204 /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184594D83DDDF22BC9D2539A /* Pods_LandmarkRemark.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		8CA7D5622319698B00409AE4 /* NewMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMarkViewModel.swift; sourceTree = "<group>"; };
 		8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Title.swift"; sourceTree = "<group>"; };
 		8CA7D56C23196D5B00409AE4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		8CA7D56E231972BA00409AE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B30BB9805A3AC85261C6F0A9 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 		B538E5CFE4A7003DABCAF500 /* Pods-LandmarkRemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemarkTests/Pods-LandmarkRemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				8CA5EEE7231947C60021E341 /* Manager */,
 				8CA5EEE2231946790021E341 /* Extension */,
 				8CA5EEDB2319436E0021E341 /* Supporting Files */,
+				8CA7D56E231972BA00409AE4 /* GoogleService-Info.plist */,
 				8CA5EEC7231942580021E341 /* Info.plist */,
 			);
 			path = LandmarkRemark;
@@ -296,6 +299,7 @@
 			files = (
 				8CA5EEC6231942580021E341 /* LaunchScreen.storyboard in Resources */,
 				8CA5EEC3231942580021E341 /* Assets.xcassets in Resources */,
+				8CA7D56F231972BA00409AE4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

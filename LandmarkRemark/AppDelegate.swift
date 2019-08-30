@@ -6,6 +6,7 @@
 //  Copyright © 2019 Yu Sun. All rights reserved.
 //
 
+import Firebase
 import UIKit
 
 @UIApplicationMain
@@ -18,6 +19,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeViewController = HomeViewController()
         window?.rootViewController = UINavigationController(rootViewController: homeViewController)
         window?.makeKeyAndVisible()
+        
+        FirebaseApp.configure()
         
         return true
     }
