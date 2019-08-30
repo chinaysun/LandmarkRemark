@@ -14,8 +14,12 @@
 		8CA5EED1231942580021E341 /* LandmarkRemarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5EED0231942580021E341 /* LandmarkRemarkTests.swift */; };
 		8CA5EEDF231943C30021E341 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5EEDE231943C30021E341 /* HomeViewController.swift */; };
 		8CA5EEE1231945320021E341 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5EEE0231945320021E341 /* HomeViewModel.swift */; };
-		8CA5EEE62319470D0021E341 /* UIViewController+TopBarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5EEE52319470D0021E341 /* UIViewController+TopBarHeight.swift */; };
+		8CA5EEE62319470D0021E341 /* UIViewController+SafeAreaSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5EEE52319470D0021E341 /* UIViewController+SafeAreaSupport.swift */; };
 		8CA5EEE9231947F40021E341 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5EEE8231947F40021E341 /* CoreLocationManager.swift */; };
+		8CA7D5612319690100409AE4 /* NewMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D5602319690100409AE4 /* NewMarkViewController.swift */; };
+		8CA7D5632319698B00409AE4 /* NewMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D5622319698B00409AE4 /* NewMarkViewModel.swift */; };
+		8CA7D565231969E900409AE4 /* UIBarButtonItem+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */; };
+		8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D56C23196D5B00409AE4 /* Location.swift */; };
 		A5F941145914AD21C5EF4204 /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184594D83DDDF22BC9D2539A /* Pods_LandmarkRemark.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +48,12 @@
 		8CA5EED2231942580021E341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CA5EEDE231943C30021E341 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8CA5EEE0231945320021E341 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		8CA5EEE52319470D0021E341 /* UIViewController+TopBarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopBarHeight.swift"; sourceTree = "<group>"; };
+		8CA5EEE52319470D0021E341 /* UIViewController+SafeAreaSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SafeAreaSupport.swift"; sourceTree = "<group>"; };
 		8CA5EEE8231947F40021E341 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
+		8CA7D5602319690100409AE4 /* NewMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMarkViewController.swift; sourceTree = "<group>"; };
+		8CA7D5622319698B00409AE4 /* NewMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMarkViewModel.swift; sourceTree = "<group>"; };
+		8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Title.swift"; sourceTree = "<group>"; };
+		8CA7D56C23196D5B00409AE4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		B30BB9805A3AC85261C6F0A9 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 		B538E5CFE4A7003DABCAF500 /* Pods-LandmarkRemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemarkTests/Pods-LandmarkRemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +89,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8C0DCE682319684F00DD6398 /* NewMark */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D5602319690100409AE4 /* NewMarkViewController.swift */,
+				8CA7D5622319698B00409AE4 /* NewMarkViewModel.swift */,
+			);
+			path = NewMark;
+			sourceTree = "<group>";
+		};
 		8CA5EEAF231942570021E341 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +123,7 @@
 			children = (
 				8CA5EEBB231942570021E341 /* AppDelegate.swift */,
 				8CA5EEDC231943890021E341 /* Screens */,
+				8CA7D56B23196D4B00409AE4 /* Entities */,
 				8CA5EEE7231947C60021E341 /* Manager */,
 				8CA5EEE2231946790021E341 /* Extension */,
 				8CA5EEDB2319436E0021E341 /* Supporting Files */,
@@ -135,6 +153,7 @@
 		8CA5EEDC231943890021E341 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8C0DCE682319684F00DD6398 /* NewMark */,
 				8CA5EEDD231943980021E341 /* Home */,
 			);
 			path = Screens;
@@ -160,7 +179,8 @@
 		8CA5EEE3231946840021E341 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				8CA5EEE52319470D0021E341 /* UIViewController+TopBarHeight.swift */,
+				8CA5EEE52319470D0021E341 /* UIViewController+SafeAreaSupport.swift */,
+				8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -171,6 +191,14 @@
 				8CA5EEE8231947F40021E341 /* CoreLocationManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		8CA7D56B23196D4B00409AE4 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D56C23196D5B00409AE4 /* Location.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		A77440653D8A8D3A04469592 /* Frameworks */ = {
@@ -350,10 +378,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CA5EEBC231942570021E341 /* AppDelegate.swift in Sources */,
+				8CA7D565231969E900409AE4 /* UIBarButtonItem+Title.swift in Sources */,
 				8CA5EEE1231945320021E341 /* HomeViewModel.swift in Sources */,
+				8CA7D5632319698B00409AE4 /* NewMarkViewModel.swift in Sources */,
+				8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */,
+				8CA7D5612319690100409AE4 /* NewMarkViewController.swift in Sources */,
 				8CA5EEE9231947F40021E341 /* CoreLocationManager.swift in Sources */,
 				8CA5EEDF231943C30021E341 /* HomeViewController.swift in Sources */,
-				8CA5EEE62319470D0021E341 /* UIViewController+TopBarHeight.swift in Sources */,
+				8CA5EEE62319470D0021E341 /* UIViewController+SafeAreaSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

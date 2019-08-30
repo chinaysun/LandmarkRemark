@@ -6,6 +6,7 @@
 //  Copyright © 2019 Yu Sun. All rights reserved.
 //
 
+import CoreLocation
 import RxSwift
 
 final class HomeViewModel {
@@ -18,6 +19,10 @@ final class HomeViewModel {
     // MARK: - Observables
     
     var screenTitle: Observable<String> { return .just("LandmarkRemark") }
+    
+    var userCurrentLocation: Observable<CLLocation> {
+        return coreLocationManager.didUpdateLocation
+    }
     
     var isUserLocationShown: Observable<Bool> {
         return coreLocationManager.authorizationStatus
