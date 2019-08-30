@@ -14,6 +14,7 @@ final class HomeViewModel {
     // MARK: - Data Injection
     
     private let coreLocationManager: CoreLocationManaging
+    let dataFetcher: FirebaseFetching
 
 
     // MARK: - Observables
@@ -30,8 +31,12 @@ final class HomeViewModel {
             .distinctUntilChanged()
     }
     
-    init(coreLocationManager: CoreLocationManaging = CoreLocationManager()) {
+    init(
+        coreLocationManager: CoreLocationManaging = CoreLocationManager(),
+        dataFetcher: FirebaseFetching = FirebaseFetcher()
+    ) {
         self.coreLocationManager = coreLocationManager
+        self.dataFetcher = dataFetcher
     }
 }
 

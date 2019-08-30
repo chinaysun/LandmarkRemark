@@ -118,6 +118,18 @@ private extension HomeViewController {
                 self?.moveMapTo($0.coordinate)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.dataFetcher.users
+            .subscribe(onSuccess: {
+                print($0.count)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.dataFetcher.markers
+            .subscribe(onSuccess: {
+                print($0.first?.note)
+            })
+            .disposed(by: disposeBag)
     }
     
     func prepareUIBindings() {

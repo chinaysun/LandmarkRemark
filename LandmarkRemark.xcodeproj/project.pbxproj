@@ -21,6 +21,9 @@
 		8CA7D565231969E900409AE4 /* UIBarButtonItem+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */; };
 		8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D56C23196D5B00409AE4 /* Location.swift */; };
 		8CA7D56F231972BA00409AE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CA7D56E231972BA00409AE4 /* GoogleService-Info.plist */; };
+		8CA7D5712319753B00409AE4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D5702319753B00409AE4 /* User.swift */; };
+		8CA7D573231975CE00409AE4 /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D572231975CE00409AE4 /* Mark.swift */; };
+		8CA7D577231976BE00409AE4 /* FirebaseFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D576231976BE00409AE4 /* FirebaseFetcher.swift */; };
 		A5F941145914AD21C5EF4204 /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184594D83DDDF22BC9D2539A /* Pods_LandmarkRemark.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Title.swift"; sourceTree = "<group>"; };
 		8CA7D56C23196D5B00409AE4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8CA7D56E231972BA00409AE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8CA7D5702319753B00409AE4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8CA7D572231975CE00409AE4 /* Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
+		8CA7D576231976BE00409AE4 /* FirebaseFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseFetcher.swift; path = LandmarkRemark/Entities/FirebaseFetcher.swift; sourceTree = SOURCE_ROOT; };
 		B30BB9805A3AC85261C6F0A9 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 		B538E5CFE4A7003DABCAF500 /* Pods-LandmarkRemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemarkTests/Pods-LandmarkRemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +132,7 @@
 				8CA5EEBB231942570021E341 /* AppDelegate.swift */,
 				8CA5EEDC231943890021E341 /* Screens */,
 				8CA7D56B23196D4B00409AE4 /* Entities */,
+				8CA7D5742319768F00409AE4 /* Network */,
 				8CA5EEE7231947C60021E341 /* Manager */,
 				8CA5EEE2231946790021E341 /* Extension */,
 				8CA5EEDB2319436E0021E341 /* Supporting Files */,
@@ -200,8 +207,26 @@
 			isa = PBXGroup;
 			children = (
 				8CA7D56C23196D5B00409AE4 /* Location.swift */,
+				8CA7D5702319753B00409AE4 /* User.swift */,
+				8CA7D572231975CE00409AE4 /* Mark.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		8CA7D5742319768F00409AE4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D575231976A400409AE4 /* FirebaseFetcher */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8CA7D575231976A400409AE4 /* FirebaseFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D576231976BE00409AE4 /* FirebaseFetcher.swift */,
+			);
+			path = FirebaseFetcher;
 			sourceTree = "<group>";
 		};
 		A77440653D8A8D3A04469592 /* Frameworks */ = {
@@ -387,8 +412,11 @@
 				8CA7D5632319698B00409AE4 /* NewMarkViewModel.swift in Sources */,
 				8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */,
 				8CA7D5612319690100409AE4 /* NewMarkViewController.swift in Sources */,
+				8CA7D577231976BE00409AE4 /* FirebaseFetcher.swift in Sources */,
 				8CA5EEE9231947F40021E341 /* CoreLocationManager.swift in Sources */,
 				8CA5EEDF231943C30021E341 /* HomeViewController.swift in Sources */,
+				8CA7D573231975CE00409AE4 /* Mark.swift in Sources */,
+				8CA7D5712319753B00409AE4 /* User.swift in Sources */,
 				8CA5EEE62319470D0021E341 /* UIViewController+SafeAreaSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
