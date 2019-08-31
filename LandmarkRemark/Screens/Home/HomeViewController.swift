@@ -77,6 +77,7 @@ final class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         viewModel.loadOwner()
+        viewModel.loadAnnotations()
     }
 }
 
@@ -133,6 +134,15 @@ private extension HomeViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.moveMapTo($0.coordinate)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.annotations
+            .map { $0.map { MarkMKAnnotation(annotation: $0) }}
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                self?.mapView.addAnnotations($0)
             })
             .disposed(by: disposeBag)
     }

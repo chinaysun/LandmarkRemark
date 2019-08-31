@@ -64,13 +64,13 @@ final class FirebaseFetcher {
         }
     }
     
-    static var markers: Single<[Marker]> {
+    static var markers: Single<[Mark]> {
         return .create { observer in
             reference.child(Endpoint.marks.rawValue)
                 .observeSingleEvent(of: .value) { snapshot in
                     if let dictionary = snapshot.value as? [String: Any] {
                         let markers = dictionary
-                            .compactMap { Marker(id: $0.key, dictionary: $0.value as? [String: Any]) }
+                            .compactMap { Mark(id: $0.key, dictionary: $0.value as? [String: Any]) }
                         observer(.success(markers))
                     } else {
                         observer(.error(FirebaseError.failInitialization))
@@ -91,11 +91,11 @@ final class FirebaseFetcher {
     static func storeMarker(date: Date, location: Location, comment: String) {
         DispatchQueue.global(qos: .background).async {
             let values: [String: Any] = [
-                Marker.Key.userID.rawValue: FirebaseFetcher.userIdentifier,
-                Marker.Key.latitude.rawValue: location.latitude,
-                Marker.Key.longtitue.rawValue: location.longtitue,
-                Marker.Key.note.rawValue: comment,
-                Marker.Key.createdDate.rawValue: date.timeIntervalSince1970
+                Mark.Key.userID.rawValue: FirebaseFetcher.userIdentifier,
+                Mark.Key.latitude.rawValue: location.latitude,
+                Mark.Key.longtitue.rawValue: location.longtitue,
+                Mark.Key.note.rawValue: comment,
+                Mark.Key.createdDate.rawValue: date.timeIntervalSince1970
             ]
             reference.child(Endpoint.marks.rawValue).childByAutoId()
                 .updateChildValues(values)

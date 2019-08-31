@@ -11,7 +11,7 @@ import RxSwift
 protocol HomeDataFetching {
     
     var users: Single<[User]> { get }
-    var markers: Single<[Marker]> { get }
+    var markers: Single<[Mark]> { get }
     var owner: Single<User?> { get }
     
     func storeUser(name: String)
@@ -27,7 +27,7 @@ extension FirebaseFetcher: HomeDataFetching {
         return FirebaseFetcher.users
     }
     
-    var markers: Single<[Marker]> {
+    var markers: Single<[Mark]> {
         return FirebaseFetcher.markers
     }
     

@@ -27,6 +27,9 @@
 		8CA7D579231981F100409AE4 /* Firebase+HomeDataFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D578231981F100409AE4 /* Firebase+HomeDataFetching.swift */; };
 		8CA7D57B2319983500409AE4 /* Firebase+NewMarkDataFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D57A2319983500409AE4 /* Firebase+NewMarkDataFetching.swift */; };
 		8CA7D57D23199ACB00409AE4 /* UINavigationBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D57C23199ACB00409AE4 /* UINavigationBar+Appearance.swift */; };
+		8CA7D5802319F11C00409AE4 /* MarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D57F2319F11C00409AE4 /* MarkAnnotation.swift */; };
+		8CA7D5832319FD1100409AE4 /* ObservableType+FilterEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D5822319FD1100409AE4 /* ObservableType+FilterEmpty.swift */; };
+		8CA7D585231A06B200409AE4 /* MarkMKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D584231A06B200409AE4 /* MarkMKAnnotation.swift */; };
 		A5F941145914AD21C5EF4204 /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184594D83DDDF22BC9D2539A /* Pods_LandmarkRemark.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		8CA7D578231981F100409AE4 /* Firebase+HomeDataFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Firebase+HomeDataFetching.swift"; path = "LandmarkRemark/Entities/Firebase+HomeDataFetching.swift"; sourceTree = SOURCE_ROOT; };
 		8CA7D57A2319983500409AE4 /* Firebase+NewMarkDataFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Firebase+NewMarkDataFetching.swift"; path = "LandmarkRemark/Entities/Firebase+NewMarkDataFetching.swift"; sourceTree = SOURCE_ROOT; };
 		8CA7D57C23199ACB00409AE4 /* UINavigationBar+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Appearance.swift"; sourceTree = "<group>"; };
+		8CA7D57F2319F11C00409AE4 /* MarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAnnotation.swift; sourceTree = "<group>"; };
+		8CA7D5822319FD1100409AE4 /* ObservableType+FilterEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+FilterEmpty.swift"; sourceTree = "<group>"; };
+		8CA7D584231A06B200409AE4 /* MarkMKAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkMKAnnotation.swift; sourceTree = "<group>"; };
 		B30BB9805A3AC85261C6F0A9 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 		B538E5CFE4A7003DABCAF500 /* Pods-LandmarkRemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemarkTests/Pods-LandmarkRemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +184,7 @@
 		8CA5EEDD231943980021E341 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8CA7D57E2319F0FF00409AE4 /* Model */,
 				8CA5EEDE231943C30021E341 /* HomeViewController.swift */,
 				8CA5EEE0231945320021E341 /* HomeViewModel.swift */,
 			);
@@ -187,6 +194,7 @@
 		8CA5EEE2231946790021E341 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8CA7D5812319FCE900409AE4 /* Rx */,
 				8CA5EEE3231946840021E341 /* UIKit */,
 			);
 			path = Extension;
@@ -236,6 +244,23 @@
 				8CA7D57A2319983500409AE4 /* Firebase+NewMarkDataFetching.swift */,
 			);
 			path = FirebaseFetcher;
+			sourceTree = "<group>";
+		};
+		8CA7D57E2319F0FF00409AE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D57F2319F11C00409AE4 /* MarkAnnotation.swift */,
+				8CA7D584231A06B200409AE4 /* MarkMKAnnotation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8CA7D5812319FCE900409AE4 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D5822319FD1100409AE4 /* ObservableType+FilterEmpty.swift */,
+			);
+			path = Rx;
 			sourceTree = "<group>";
 		};
 		A77440653D8A8D3A04469592 /* Frameworks */ = {
@@ -416,10 +441,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CA7D57B2319983500409AE4 /* Firebase+NewMarkDataFetching.swift in Sources */,
+				8CA7D5832319FD1100409AE4 /* ObservableType+FilterEmpty.swift in Sources */,
 				8CA5EEBC231942570021E341 /* AppDelegate.swift in Sources */,
+				8CA7D585231A06B200409AE4 /* MarkMKAnnotation.swift in Sources */,
 				8CA7D565231969E900409AE4 /* UIBarButtonItem+Title.swift in Sources */,
 				8CA7D57D23199ACB00409AE4 /* UINavigationBar+Appearance.swift in Sources */,
 				8CA5EEE1231945320021E341 /* HomeViewModel.swift in Sources */,
+				8CA7D5802319F11C00409AE4 /* MarkAnnotation.swift in Sources */,
 				8CA7D5632319698B00409AE4 /* NewMarkViewModel.swift in Sources */,
 				8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */,
 				8CA7D5612319690100409AE4 /* NewMarkViewController.swift in Sources */,

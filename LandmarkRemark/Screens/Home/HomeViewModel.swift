@@ -19,6 +19,16 @@ final class HomeViewModel {
     
     private let disposeBag = DisposeBag()
     private let ownerSink = BehaviorRelay<User?>(value: nil)
+    private let marksSink = BehaviorSubject<[Mark]>(value: [])
+    private let usersSink = BehaviorSubject<[User]>(value: [])
+    private let filterSink = PublishSubject<String?>()
+    
+    private let dateFomatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        
+        return dateFormatter
+    }()
 
     // MARK: - Observables
     
@@ -45,6 +55,23 @@ final class HomeViewModel {
     
     var isOwnerExists: Observable<Bool> {
         return ownerSink.map { $0 != nil }
+    }
+    
+    var annotations: Observable<[MarkAnnotation]> {
+        return Observable
+            .combineLatest(
+                marksSink.filterEmpty(),
+                usersSink.filterEmpty(),
+                ownerSink,
+                filterSink.startWith(nil)
+            ) { ($0, $1, $2, $3) }
+            .map { [weak self] marks, users, deviceOwner, filter -> [MarkAnnotation] in
+                return marks.compactMap {
+                    self?.makeMarkAnnotation(mark: $0, users: users, deviceOwner: deviceOwner)
+                }
+            }
+            .filterEmpty()
+            .distinctUntilChanged()
     }
     
     init(
@@ -76,7 +103,44 @@ extension HomeViewModel {
         coreLocationManager.startUpdatingLocation()
     }
     
+    func loadAnnotations() {
+        dataFetcher.markers
+            .catchErrorJustReturn([])
+            .subscribe(onSuccess: { [weak self] in
+                self?.marksSink.onNext($0)
+            })
+            .disposed(by: disposeBag)
+        
+        dataFetcher.users
+            .catchErrorJustReturn([])
+            .subscribe(onSuccess: { [weak self] in
+                self?.usersSink.onNext($0)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func saveOwner(name: String) {
         dataFetcher.storeUser(name: name)
+    }
+}
+
+
+// MARK: - Private Functions
+
+private extension HomeViewModel {
+    
+    func makeMarkAnnotation(mark: Mark, users: [User], deviceOwner: User?) -> MarkAnnotation {
+        let author = users.first { $0.id == mark.userID }
+        let authorName = author?.name ?? "Unknown"
+        let date = dateFomatter.string(from: mark.createdDate)
+        let isOwner = author?.id == deviceOwner?.id
+
+        return MarkAnnotation(
+            id: mark.id,
+            classification: isOwner ? .owned : .others,
+            title: "\(authorName) marked this place at \(date)",
+            subtitle: mark.note,
+            location: mark.location
+        )
     }
 }
