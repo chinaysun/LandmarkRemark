@@ -16,6 +16,11 @@ struct User {
     let id: String
     let name: String
     
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
+    
     init?(id: String, dictionary: [String: Any]?) {
         guard let name = dictionary?[Key.name.rawValue] as? String
         else { return nil }

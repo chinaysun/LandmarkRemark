@@ -24,6 +24,9 @@
 		8CA7D5712319753B00409AE4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D5702319753B00409AE4 /* User.swift */; };
 		8CA7D573231975CE00409AE4 /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D572231975CE00409AE4 /* Mark.swift */; };
 		8CA7D577231976BE00409AE4 /* FirebaseFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D576231976BE00409AE4 /* FirebaseFetcher.swift */; };
+		8CA7D579231981F100409AE4 /* Firebase+HomeDataFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D578231981F100409AE4 /* Firebase+HomeDataFetching.swift */; };
+		8CA7D57B2319983500409AE4 /* Firebase+NewMarkDataFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D57A2319983500409AE4 /* Firebase+NewMarkDataFetching.swift */; };
+		8CA7D57D23199ACB00409AE4 /* UINavigationBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D57C23199ACB00409AE4 /* UINavigationBar+Appearance.swift */; };
 		A5F941145914AD21C5EF4204 /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184594D83DDDF22BC9D2539A /* Pods_LandmarkRemark.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +65,9 @@
 		8CA7D5702319753B00409AE4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8CA7D572231975CE00409AE4 /* Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
 		8CA7D576231976BE00409AE4 /* FirebaseFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseFetcher.swift; path = LandmarkRemark/Entities/FirebaseFetcher.swift; sourceTree = SOURCE_ROOT; };
+		8CA7D578231981F100409AE4 /* Firebase+HomeDataFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Firebase+HomeDataFetching.swift"; path = "LandmarkRemark/Entities/Firebase+HomeDataFetching.swift"; sourceTree = SOURCE_ROOT; };
+		8CA7D57A2319983500409AE4 /* Firebase+NewMarkDataFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Firebase+NewMarkDataFetching.swift"; path = "LandmarkRemark/Entities/Firebase+NewMarkDataFetching.swift"; sourceTree = SOURCE_ROOT; };
+		8CA7D57C23199ACB00409AE4 /* UINavigationBar+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Appearance.swift"; sourceTree = "<group>"; };
 		B30BB9805A3AC85261C6F0A9 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 		B538E5CFE4A7003DABCAF500 /* Pods-LandmarkRemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemarkTests/Pods-LandmarkRemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,18 +187,19 @@
 		8CA5EEE2231946790021E341 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				8CA5EEE3231946840021E341 /* UI */,
+				8CA5EEE3231946840021E341 /* UIKit */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		8CA5EEE3231946840021E341 /* UI */ = {
+		8CA5EEE3231946840021E341 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
 				8CA5EEE52319470D0021E341 /* UIViewController+SafeAreaSupport.swift */,
 				8CA7D564231969E900409AE4 /* UIBarButtonItem+Title.swift */,
+				8CA7D57C23199ACB00409AE4 /* UINavigationBar+Appearance.swift */,
 			);
-			path = UI;
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		8CA5EEE7231947C60021E341 /* Manager */ = {
@@ -225,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				8CA7D576231976BE00409AE4 /* FirebaseFetcher.swift */,
+				8CA7D578231981F100409AE4 /* Firebase+HomeDataFetching.swift */,
+				8CA7D57A2319983500409AE4 /* Firebase+NewMarkDataFetching.swift */,
 			);
 			path = FirebaseFetcher;
 			sourceTree = "<group>";
@@ -406,8 +415,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA7D57B2319983500409AE4 /* Firebase+NewMarkDataFetching.swift in Sources */,
 				8CA5EEBC231942570021E341 /* AppDelegate.swift in Sources */,
 				8CA7D565231969E900409AE4 /* UIBarButtonItem+Title.swift in Sources */,
+				8CA7D57D23199ACB00409AE4 /* UINavigationBar+Appearance.swift in Sources */,
 				8CA5EEE1231945320021E341 /* HomeViewModel.swift in Sources */,
 				8CA7D5632319698B00409AE4 /* NewMarkViewModel.swift in Sources */,
 				8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */,
@@ -415,6 +426,7 @@
 				8CA7D577231976BE00409AE4 /* FirebaseFetcher.swift in Sources */,
 				8CA5EEE9231947F40021E341 /* CoreLocationManager.swift in Sources */,
 				8CA5EEDF231943C30021E341 /* HomeViewController.swift in Sources */,
+				8CA7D579231981F100409AE4 /* Firebase+HomeDataFetching.swift in Sources */,
 				8CA7D573231975CE00409AE4 /* Mark.swift in Sources */,
 				8CA7D5712319753B00409AE4 /* User.swift in Sources */,
 				8CA5EEE62319470D0021E341 /* UIViewController+SafeAreaSupport.swift in Sources */,

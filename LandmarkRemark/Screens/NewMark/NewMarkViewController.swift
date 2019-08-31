@@ -68,7 +68,7 @@ final class NewMarkViewController: UIViewController {
     
     private func layout() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: topBarHeights + 20),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
             titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             textView.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
@@ -93,6 +93,7 @@ final class NewMarkViewController: UIViewController {
                 guard let self = self else { return }
                 
                 self.viewModel.saveComment(self.textView.text)
+                self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }

@@ -9,6 +9,8 @@
 import UIKit
 
 extension UIBarButtonItem {
+    
+    static let empty = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     convenience init(title: String) {
         self.init(title: title, style: .plain, target: nil, action: nil)

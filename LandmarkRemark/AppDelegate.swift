@@ -15,8 +15,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
+
+        configure()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         let homeViewController = HomeViewController()
@@ -24,6 +24,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         return true
+    }
+}
+
+private extension AppDelegate {
+    
+    func configure() {
+        FirebaseApp.configure()
+        UINavigationBar.configureAppearance()
     }
 }
 

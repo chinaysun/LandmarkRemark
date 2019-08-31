@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import RxRelay
 import RxSwift
 
 final class HomeViewModel {
@@ -14,12 +15,23 @@ final class HomeViewModel {
     // MARK: - Data Injection
     
     private let coreLocationManager: CoreLocationManaging
-    let dataFetcher: FirebaseFetching
-
+    private let dataFetcher: HomeDataFetching
+    
+    private let disposeBag = DisposeBag()
+    private let ownerSink = BehaviorRelay<User?>(value: nil)
 
     // MARK: - Observables
     
-    var screenTitle: Observable<String> { return .just("LandmarkRemark") }
+    var screenTitle: Observable<String> {
+        return ownerSink
+            .map {
+                if let name = $0?.name {
+                    return name
+                } else {
+                    return "Landmark Remark"
+                }
+            }
+    }
     
     var userCurrentLocation: Observable<CLLocation> {
         return coreLocationManager.didUpdateLocation
@@ -31,9 +43,13 @@ final class HomeViewModel {
             .distinctUntilChanged()
     }
     
+    var isOwnerExists: Observable<Bool> {
+        return ownerSink.map { $0 != nil }
+    }
+    
     init(
         coreLocationManager: CoreLocationManaging = CoreLocationManager(),
-        dataFetcher: FirebaseFetching = FirebaseFetcher()
+        dataFetcher: HomeDataFetching = FirebaseFetcher()
     ) {
         self.coreLocationManager = coreLocationManager
         self.dataFetcher = dataFetcher
@@ -44,8 +60,23 @@ final class HomeViewModel {
 
 extension HomeViewModel {
     
+    func loadOwner() {
+        guard ownerSink.value == nil else { return }
+        
+        dataFetcher.owner
+            .catchErrorJustReturn(nil)
+            .subscribe(onSuccess: { [weak self] in
+                self?.ownerSink.accept($0)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func loadUserLocation() {
         coreLocationManager.requestPermissionIfNeeded()
         coreLocationManager.startUpdatingLocation()
+    }
+    
+    func saveOwner(name: String) {
+        dataFetcher.storeUser(name: name)
     }
 }

@@ -10,38 +10,6 @@ import Foundation
 import FirebaseDatabase
 import RxSwift
 
-protocol FirebaseFetching {
-    
-    var users: Single<[User]> { get }
-    var markers: Single<[Marker]> { get }
-    
-    func storeUser(name: String)
-    func storeMarker(date: Date, location: Location, comment: String)
-}
-
-final class FirebaseFetcher {
-    
-    private enum Key: String {
-        
-        case userUniqueIdentifier
-    }
-    
-    private static var userIdentifier: String {
-        if let id = UIDevice.current.identifierForVendor {
-            return id.uuidString
-        } else if let id = UserDefaults.standard.string(forKey: Key.userUniqueIdentifier.rawValue) {
-            return id
-        } else {
-            let id = UUID().uuidString
-            UserDefaults.standard.setValue(id, forKey: Key.userUniqueIdentifier.rawValue)
-            UserDefaults.standard.synchronize()
-            return id
-        }
-    }
-    
-    private let reference = Database.database().reference()
-}
-
 extension FirebaseFetcher {
     
     enum FirebaseError: Error {
@@ -49,17 +17,39 @@ extension FirebaseFetcher {
         case failInitialization
     }
     
-    private enum Endpoint: String {
+    enum Endpoint: String {
         
         case users, marks
     }
+    
+    private enum Key: String {
+        
+        case userUniqueIdentifier
+    }
 }
 
-extension FirebaseFetcher: FirebaseFetching {
+final class FirebaseFetcher {
     
-    var users: Single<[User]> {
-        return .create { [weak self] observer in
-            self?.reference.child(Endpoint.users.rawValue)
+    static var owner: Single<User?> {
+        return .create { observer in
+            reference.child(Endpoint.users.rawValue).child(FirebaseFetcher.userIdentifier)
+                .observe(.value) { snapshot in
+                    if  let value = snapshot.value as? [String: Any],
+                        let name = value[User.Key.name.rawValue] as? String
+                    {
+                        observer(.success(User(id: snapshot.key, name: name)))
+                    } else {
+                        observer(.success(nil))
+                    }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    static var users: Single<[User]> {
+        return .create { observer in
+            reference.child(Endpoint.users.rawValue)
                 .observeSingleEvent(of: .value) { snapshot in
                     if let dictionary = snapshot.value as? [String: Any] {
                         let users = dictionary
@@ -74,9 +64,9 @@ extension FirebaseFetcher: FirebaseFetching {
         }
     }
     
-    var markers: Single<[Marker]> {
-        return .create { [weak self] observer in
-            self?.reference.child(Endpoint.marks.rawValue)
+    static var markers: Single<[Marker]> {
+        return .create { observer in
+            reference.child(Endpoint.marks.rawValue)
                 .observeSingleEvent(of: .value) { snapshot in
                     if let dictionary = snapshot.value as? [String: Any] {
                         let markers = dictionary
@@ -91,14 +81,14 @@ extension FirebaseFetcher: FirebaseFetching {
         }
     }
     
-    func storeUser(name: String) {
+    static func storeUser(name: String) {
         DispatchQueue.global(qos: .background).async {
-            self.reference.child(Endpoint.users.rawValue).child(FirebaseFetcher.userIdentifier)
+            reference.child(Endpoint.users.rawValue).child(FirebaseFetcher.userIdentifier)
                 .updateChildValues([User.Key.name.rawValue: name])
         }
     }
     
-    func storeMarker(date: Date, location: Location, comment: String) {
+    static func storeMarker(date: Date, location: Location, comment: String) {
         DispatchQueue.global(qos: .background).async {
             let values: [String: Any] = [
                 Marker.Key.userID.rawValue: FirebaseFetcher.userIdentifier,
@@ -107,8 +97,24 @@ extension FirebaseFetcher: FirebaseFetching {
                 Marker.Key.note.rawValue: comment,
                 Marker.Key.createdDate.rawValue: date.timeIntervalSince1970
             ]
-            self.reference.child(Endpoint.marks.rawValue).childByAutoId()
+            reference.child(Endpoint.marks.rawValue).childByAutoId()
                 .updateChildValues(values)
         }
     }
+    
+    private static let reference = Database.database().reference()
+    
+    private static var userIdentifier: String {
+        if let id = UIDevice.current.identifierForVendor {
+            return id.uuidString
+        } else if let id = UserDefaults.standard.string(forKey: Key.userUniqueIdentifier.rawValue) {
+            return id
+        } else {
+            let id = UUID().uuidString
+            UserDefaults.standard.setValue(id, forKey: Key.userUniqueIdentifier.rawValue)
+            UserDefaults.standard.synchronize()
+            return id
+        }
+    }
 }
+
