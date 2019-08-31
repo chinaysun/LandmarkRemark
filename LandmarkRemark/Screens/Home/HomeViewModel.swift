@@ -22,6 +22,7 @@ final class HomeViewModel {
     private let marksSink = BehaviorSubject<[Mark]>(value: [])
     private let usersSink = BehaviorSubject<[User]>(value: [])
     private let filterSink = PublishSubject<String?>()
+    private let markSelectedSink = PublishSubject<String>()
     
     private let dateFomatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -74,6 +75,28 @@ final class HomeViewModel {
             .distinctUntilChanged()
     }
     
+    var viewMark: Observable<MarkDetailViewControllerModel> {
+        return markSelectedSink
+            .withLatestFrom(marksSink) { ($0, $1) }
+            .compactMap { selectedID, marks -> Mark? in
+                return marks.first { selectedID == $0.id }
+            }
+            .withLatestFrom(usersSink) { ($0, $1) }
+            .map { [weak self] mark, users -> MarkDetailViewControllerModel in
+                let author = users.first { $0.id == mark.userID }
+                let deviceOwner = self?.ownerSink.value
+                let authorName = author?.id == deviceOwner?.id
+                    ? "You"
+                    : author?.name
+                
+                return MarkDetailViewControllerModel(
+                    heading: DateFormatter.landmarkRemarkDateFormatter.string(from: mark.createdDate),
+                    title: "\(authorName ?? "Unknown Author") comments this location",
+                    note: mark.note
+                )
+            }
+    }
+    
     init(
         coreLocationManager: CoreLocationManaging = CoreLocationManager(),
         dataFetcher: HomeDataFetching = FirebaseFetcher()
@@ -121,6 +144,10 @@ extension HomeViewModel {
     
     func saveOwner(name: String) {
         dataFetcher.storeUser(name: name)
+    }
+    
+    func selectMark(id: String) {
+        markSelectedSink.onNext(id)
     }
 }
 

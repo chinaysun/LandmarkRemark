@@ -146,6 +146,13 @@ private extension HomeViewController {
                 self?.mapView.addAnnotations($0)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.viewMark
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                self?.viewMarkDetail(model: $0)
+            })
+            .disposed(by: disposeBag)
     }
     
     func prepareUIBindings() {
@@ -224,6 +231,11 @@ private extension HomeViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    func viewMarkDetail(model: MarkDetailViewControllerModel) {
+        let viewController = MarkDetailViewController(model: model)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 extension HomeViewController: MKMapViewDelegate  {
@@ -242,5 +254,10 @@ extension HomeViewController: MKMapViewDelegate  {
             
             return annotationView
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let annotation = view.annotation as? MarkMKAnnotation else { return }
+        viewModel.selectMark(id: annotation.markID)
     }
 }

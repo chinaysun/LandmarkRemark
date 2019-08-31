@@ -16,10 +16,7 @@ final class NewMarkViewModel {
     private let date = Date()
     
     var screenTitle: Observable<String> {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        
-        return .just(dateFormatter.string(from: date))
+        return .just(DateFormatter.landmarkRemarkDateFormatter.string(from: date))
     }
     
     init(
