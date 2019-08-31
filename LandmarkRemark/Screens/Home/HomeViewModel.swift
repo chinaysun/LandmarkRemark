@@ -21,7 +21,7 @@ final class HomeViewModel {
     private let ownerSink = BehaviorRelay<User?>(value: nil)
     private let marksSink = BehaviorSubject<[Mark]>(value: [])
     private let usersSink = BehaviorSubject<[User]>(value: [])
-    private let filterSink = PublishSubject<String?>()
+    private let searchSink = PublishSubject<String?>()
     private let markSelectedSink = PublishSubject<String>()
     
     private let dateFomatter: DateFormatter = {
@@ -64,11 +64,18 @@ final class HomeViewModel {
                 marksSink.filterEmpty(),
                 usersSink.filterEmpty(),
                 ownerSink,
-                filterSink.startWith(nil)
+                searchSink.startWith(nil)
             ) { ($0, $1, $2, $3) }
             .map { [weak self] marks, users, deviceOwner, filter -> [MarkAnnotation] in
+                let targetIDs = self?.targetIDs(filter: filter, marks: marks, users: users)
+
                 return marks.compactMap {
-                    self?.makeMarkAnnotation(mark: $0, users: users, deviceOwner: deviceOwner)
+                    self?.makeMarkAnnotation(
+                        mark: $0,
+                        users: users,
+                        deviceOwner: deviceOwner,
+                        targetIDs: targetIDs
+                    )
                 }
             }
             .filterEmpty()
@@ -149,6 +156,10 @@ extension HomeViewModel {
     func selectMark(id: String) {
         markSelectedSink.onNext(id)
     }
+    
+    func search(target: String?) {
+        searchSink.onNext(target)
+    }
 }
 
 
@@ -156,7 +167,18 @@ extension HomeViewModel {
 
 private extension HomeViewModel {
     
-    func makeMarkAnnotation(mark: Mark, users: [User], deviceOwner: User?) -> MarkAnnotation {
+    func makeMarkAnnotation(
+        mark: Mark,
+        users: [User],
+        deviceOwner: User?,
+        targetIDs: [String]?
+    ) -> MarkAnnotation? {
+        let shouldCreate = targetIDs == nil
+            || targetIDs?.contains(mark.id) == true
+            || targetIDs?.isEmpty == true
+        
+        guard shouldCreate else { return nil }
+        
         let author = users.first { $0.id == mark.userID }
         let authorName = author?.name ?? "Unknown"
         let date = dateFomatter.string(from: mark.createdDate)
@@ -169,5 +191,17 @@ private extension HomeViewModel {
             subtitle: "\(authorName) says: \(mark.note)",
             location: mark.location
         )
+    }
+    
+    func targetIDs(filter: String?, marks: [Mark], users: [User]) -> [String]? {
+        guard let filter = filter?.lowercased(), !filter.isEmpty else { return nil }
+        
+        return marks
+            .filter { mark -> Bool in
+                let author = users.first { $0.id == mark.userID }
+                return author?.name.lowercased().contains(filter) == true
+                    || mark.note.lowercased().contains(filter)
+            }
+            .map { $0.id }
     }
 }

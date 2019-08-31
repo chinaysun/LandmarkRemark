@@ -17,7 +17,7 @@ final class NewMarkViewController: UIViewController {
     private lazy var saveButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Save")
         button.isEnabled = false
-        
+
         return button
     }()
     
@@ -62,7 +62,12 @@ final class NewMarkViewController: UIViewController {
         prepareBindings()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     private func prepareNavigationBar() {
+        navigationItem.backBarButtonItem = .empty
         navigationItem.setRightBarButton(saveButton, animated: true)
     }
     
@@ -88,12 +93,14 @@ final class NewMarkViewController: UIViewController {
             .bind(to: self.rx.title)
             .disposed(by: disposeBag)
         
+        // TODO: - Fixing somehow dismiss is not working here since home viewController
+        // is not remaining on the view hirearchy stack
         saveButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
                 self.viewModel.saveComment(self.textView.text)
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
             })
             .disposed(by: disposeBag)
     }

@@ -80,6 +80,12 @@ final class HomeViewController: UIViewController {
         viewModel.loadOwner()
         viewModel.loadAnnotations()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        view.endEditing(true)
+    }
 }
 
 
@@ -143,7 +149,7 @@ private extension HomeViewController {
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                self?.mapView.addAnnotations($0)
+                self?.updateMapAnnotations($0)
             })
             .disposed(by: disposeBag)
         
@@ -172,6 +178,12 @@ private extension HomeViewController {
                     : self?.createUser(on: location.coordinate)
             })
             .disposed(by: disposeBag)
+        
+        searchBar.rx.text
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.search(target: $0)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -194,7 +206,7 @@ private extension HomeViewController {
     func remakerMap(on coordinate: CLLocationCoordinate2D) {
         let targetLocation = Location(longtitue: coordinate.longitude, latitude: coordinate.latitude)
         let viewController = NewMarkViewController(location: targetLocation)
-        navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func createUser(on coordinate: CLLocationCoordinate2D) {
@@ -259,5 +271,10 @@ extension HomeViewController: MKMapViewDelegate  {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation as? MarkMKAnnotation else { return }
         viewModel.selectMark(id: annotation.markID)
+    }
+    
+    func updateMapAnnotations(_ annotations: [MKAnnotation]) {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(annotations)
     }
 }
