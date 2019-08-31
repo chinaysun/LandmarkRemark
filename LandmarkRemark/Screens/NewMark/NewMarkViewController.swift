@@ -97,5 +97,4 @@ final class NewMarkViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
 }

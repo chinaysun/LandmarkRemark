@@ -11,7 +11,7 @@ import MapKit
 
 final class MarkMKAnnotation: NSObject {
     
-    let annotation: MarkAnnotation
+    private let annotation: MarkAnnotation
     
     init(annotation: MarkAnnotation) {
         self.annotation = annotation
@@ -19,6 +19,25 @@ final class MarkMKAnnotation: NSObject {
         super.init()
     }
 }
+
+extension MarkMKAnnotation {
+    
+    var markID: String {
+        return annotation.id
+    }
+    
+    var pinColor: UIColor {
+        switch annotation.classification {
+        case .others:
+            return .yellow
+        case .owned:
+            return .red
+        }
+    }
+}
+
+
+// MARK: - MKAnnotation
 
 extension MarkMKAnnotation: MKAnnotation {
     

@@ -30,6 +30,7 @@
 		8CA7D5802319F11C00409AE4 /* MarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D57F2319F11C00409AE4 /* MarkAnnotation.swift */; };
 		8CA7D5832319FD1100409AE4 /* ObservableType+FilterEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D5822319FD1100409AE4 /* ObservableType+FilterEmpty.swift */; };
 		8CA7D585231A06B200409AE4 /* MarkMKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D584231A06B200409AE4 /* MarkMKAnnotation.swift */; };
+		8CA7D588231A0FA600409AE4 /* Views+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7D587231A0FA600409AE4 /* Views+Reusable.swift */; };
 		A5F941145914AD21C5EF4204 /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184594D83DDDF22BC9D2539A /* Pods_LandmarkRemark.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		8CA7D57F2319F11C00409AE4 /* MarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAnnotation.swift; sourceTree = "<group>"; };
 		8CA7D5822319FD1100409AE4 /* ObservableType+FilterEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+FilterEmpty.swift"; sourceTree = "<group>"; };
 		8CA7D584231A06B200409AE4 /* MarkMKAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkMKAnnotation.swift; sourceTree = "<group>"; };
+		8CA7D587231A0FA600409AE4 /* Views+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views+Reusable.swift"; sourceTree = "<group>"; };
 		B30BB9805A3AC85261C6F0A9 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 		B538E5CFE4A7003DABCAF500 /* Pods-LandmarkRemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemarkTests/Pods-LandmarkRemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				8CA7D57E2319F0FF00409AE4 /* Model */,
+				8CA7D589231A134A00409AE4 /* View */,
 				8CA5EEDE231943C30021E341 /* HomeViewController.swift */,
 				8CA5EEE0231945320021E341 /* HomeViewModel.swift */,
 			);
@@ -194,6 +197,7 @@
 		8CA5EEE2231946790021E341 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8CA7D586231A0F6100409AE4 /* Views */,
 				8CA7D5812319FCE900409AE4 /* Rx */,
 				8CA5EEE3231946840021E341 /* UIKit */,
 			);
@@ -250,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				8CA7D57F2319F11C00409AE4 /* MarkAnnotation.swift */,
-				8CA7D584231A06B200409AE4 /* MarkMKAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +264,22 @@
 				8CA7D5822319FD1100409AE4 /* ObservableType+FilterEmpty.swift */,
 			);
 			path = Rx;
+			sourceTree = "<group>";
+		};
+		8CA7D586231A0F6100409AE4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D587231A0FA600409AE4 /* Views+Reusable.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8CA7D589231A134A00409AE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CA7D584231A06B200409AE4 /* MarkMKAnnotation.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A77440653D8A8D3A04469592 /* Frameworks */ = {
@@ -451,6 +470,7 @@
 				8CA7D5632319698B00409AE4 /* NewMarkViewModel.swift in Sources */,
 				8CA7D56D23196D5B00409AE4 /* Location.swift in Sources */,
 				8CA7D5612319690100409AE4 /* NewMarkViewController.swift in Sources */,
+				8CA7D588231A0FA600409AE4 /* Views+Reusable.swift in Sources */,
 				8CA7D577231976BE00409AE4 /* FirebaseFetcher.swift in Sources */,
 				8CA5EEE9231947F40021E341 /* CoreLocationManager.swift in Sources */,
 				8CA5EEDF231943C30021E341 /* HomeViewController.swift in Sources */,

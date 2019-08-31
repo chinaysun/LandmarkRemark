@@ -28,6 +28,7 @@ final class HomeViewController: UIViewController {
         let map = MKMapView()
         map.translatesAutoresizingMaskIntoConstraints = false
         map.mapType = .standard
+        map.delegate = self
         
         return map
     }()
@@ -222,5 +223,24 @@ private extension HomeViewController {
         alert.addAction(okAction)
         
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController: MKMapViewDelegate  {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? MarkMKAnnotation else { return nil }
+        
+        let reuseIdentifier = "markMKAnnotationIdentifer"
+        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) {
+            return annotationView
+        } else {
+            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView.pinTintColor = annotation.pinColor
+            annotationView.canShowCallout = true
+            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+            return annotationView
+        }
     }
 }

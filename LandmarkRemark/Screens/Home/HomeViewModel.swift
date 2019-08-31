@@ -138,8 +138,8 @@ private extension HomeViewModel {
         return MarkAnnotation(
             id: mark.id,
             classification: isOwner ? .owned : .others,
-            title: "\(authorName) marked this place at \(date)",
-            subtitle: mark.note,
+            title: "\(date)",
+            subtitle: "\(authorName) says: \(mark.note)",
             location: mark.location
         )
     }
