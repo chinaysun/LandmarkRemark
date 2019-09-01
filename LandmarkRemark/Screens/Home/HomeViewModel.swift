@@ -10,6 +10,15 @@ import CoreLocation
 import RxRelay
 import RxSwift
 
+protocol HomeDataFetching {
+    
+    var users: Single<[User]> { get }
+    var markers: Single<[Mark]> { get }
+    var owner: Single<User?> { get }
+    
+    func storeUser(name: String)
+}
+
 final class HomeViewModel {
     
     // MARK: - Data Injection
@@ -23,13 +32,6 @@ final class HomeViewModel {
     private let usersSink = BehaviorSubject<[User]>(value: [])
     private let searchSink = PublishSubject<String?>()
     private let markSelectedSink = PublishSubject<String>()
-    
-    private let dateFomatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        
-        return dateFormatter
-    }()
 
     // MARK: - Observables
     
@@ -181,7 +183,7 @@ private extension HomeViewModel {
         
         let author = users.first { $0.id == mark.userID }
         let authorName = author?.name ?? "Unknown"
-        let date = dateFomatter.string(from: mark.createdDate)
+        let date = DateFormatter.landmarkRemarkDateFormatter.string(from: mark.createdDate)
         let isOwner = author?.id == deviceOwner?.id
 
         return MarkAnnotation(

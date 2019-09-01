@@ -9,6 +9,11 @@
 import Foundation
 import RxSwift
 
+protocol NewMarkDataFetching {
+    
+    func storeMarker(date: Date, location: Location, comment: String)
+}
+
 final class NewMarkViewModel {
     
     private let location: Location

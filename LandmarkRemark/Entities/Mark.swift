@@ -37,4 +37,12 @@ struct Mark {
         self.note = note
         self.createdDate = Date(timeIntervalSince1970: createdTimeIntervale)
     }
+    
+    init(id: String, userID: String, note: String, longtitue: Double, latitude: Double, createdDate: Double) {
+        self.id = id
+        self.userID = userID
+        self.location = Location(longtitue: longtitue, latitude: latitude)
+        self.note = note
+        self.createdDate = Date(timeIntervalSince1970: createdDate)
+    }
 }

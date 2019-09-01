@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol NewMarkDataFetching {
-    
-    func storeMarker(date: Date, location: Location, comment: String)
-}
-
 extension FirebaseFetcher: NewMarkDataFetching {
     
     func storeMarker(date: Date, location: Location, comment: String) {
